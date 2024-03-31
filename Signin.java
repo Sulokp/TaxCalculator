@@ -151,6 +151,12 @@ public class Signin extends JFrame {
             return;
         }
 
+        // Additional validation for name field
+        if (!name.matches("[a-zA-Z\\s]+")) {
+            JOptionPane.showMessageDialog(null, "Name can only contain alphabets and spaces", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         // Save user data to database
         try (Connection connection = database.connect()) {
             String query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
@@ -167,6 +173,7 @@ public class Signin extends JFrame {
             JOptionPane.showMessageDialog(null, "Error registering user", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
     // Method to clear input fields after registration
     private void clearFields() {
