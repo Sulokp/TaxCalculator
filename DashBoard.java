@@ -63,6 +63,9 @@ public class DashBoard extends JFrame {
     private JTextField months1;
     private double citAmount;
     private double insuranceAmount;
+    private double companycontribution;
+    private double deduction;
+    private double annualtaxable;
     
 
     public static void main(String[] args) {
@@ -605,10 +608,14 @@ public class DashBoard extends JFrame {
             // Check if EPF is checked
             boolean isEPFChecked = chckbxEpf.isSelected();
             epfDeduction = 0;
-            ssfDeduction = 0;// Initialize EPF deduction
+            ssfDeduction = 0;
+            
+            
             
             if (isEPFChecked) {
-                epfDeduction = totalTaxableAmount * 0.1; // Deduct 10% for EPF
+            	companycontribution = annualSalary * 0.1;
+            	annualtaxable = totalTaxableAmount + companycontribution;
+                epfDeduction = annualSalary * 0.1;// Deduct 10% for EPF
                 totalTaxableAmount -= epfDeduction;
             
 
@@ -722,10 +729,15 @@ public class DashBoard extends JFrame {
                     taxAmount = (500000 * 0.01) + (200000 * 0.1) + (300000 * 0.2) + (1000000 * 0.3) + ((totalTaxableAmount - 2000000) * 0.36); // 1% up to 500k, 10% from 500k to 700k, 20% from 700k to 1M, 30% from 1M to 2M, 36% beyond 2M
                 } else if (totalTaxableAmount > 5000000) {
                     taxAmount = (500000 * 0.01) + (200000 * 0.1) + (300000 * 0.2) + (1000000 * 0.3) + (3000000 * 0.36) + ((totalTaxableAmount - 5000000) * 0.39); // 1% up to 500k, 10% from 500k to 700k, 20% from 700k to 1M, 30% from 1M to 2M, 36% from 2M to 5M, 39% beyond 5M
-                }}}
+                }}
+            double netIncome = totalTaxableAmount - taxAmount;
+            String message = "Annual Taxable Amount: " + annualtaxable + "\nDeduction: " + "\nCompany Contribution: " + companycontribution + "\nInsurance: " + insuranceAmount + "\nCIT: " + citAmount +  "\nEPF Deduction: " + epfDeduction+ "\nTotal Taxable Amount: " + totalTaxableAmount + "\nTax Amount: " + taxAmount + "\nNet Income (After Tax): " + netIncome ;
+            JOptionPane.showMessageDialog(this, message);
+            }
             if (!isEPFChecked){
-            	
-            	ssfDeduction = totalTaxableAmount * 0.31; // Deduct 31% for SSF
+            	companycontribution= annualSalary*0.2;// Initialize EPF deduction
+                annualtaxable = totalTaxableAmount + companycontribution;
+            	ssfDeduction = annualSalary * 0.11;// Deduct 31% for SSF
                 totalTaxableAmount -= ssfDeduction;
                 
 
@@ -764,7 +776,6 @@ public class DashBoard extends JFrame {
 
             // Deduct insurance from the remaining taxable amount
             totalTaxableAmount -= insuranceAmount;
-            System.out.println(totalTaxableAmount);
             if(isDisable && isMarried) {
             	if (totalTaxableAmount > 600000 && totalTaxableAmount <= 800000) {
                     taxAmount = ((totalTaxableAmount - 600000) * 0.1); // 1% up to 600k, 10% beyond 600k
@@ -832,11 +843,12 @@ public class DashBoard extends JFrame {
                     taxAmount = (200000 * 0.1) + (300000 * 0.2) + (1000000 * 0.3) + (3000000 * 0.36) + ((totalTaxableAmount - 5000000) * 0.39); // 1% up to 500k, 10% from 500k to 700k, 20% from 700k to 1M, 30% from 1M to 2M, 36% from 2M to 5M, 39% beyond 5M
                 }
                 }
+            double netIncome = totalTaxableAmount - taxAmount;
+            String message = "Annual Taxable Amount: " + annualtaxable + "\nDeduction: " + "\nCompany Contribution: " + companycontribution + "\nInsurance: " + insuranceAmount + "\nCIT: " + citAmount +  "\nSSF Deduction: " + ssfDeduction+ "\nTotal Taxable Amount: " + totalTaxableAmount + "\nTax Amount: " + taxAmount + "\nNet Income (After Tax): " + netIncome ;
+            JOptionPane.showMessageDialog(this, message);
             
             }
-            double netIncome = totalTaxableAmount - taxAmount;
-            String message = "Total Taxable Amount: " + totalTaxableAmount + "\nTax Amount: " + taxAmount + "\nNet Income (After Tax): " + netIncome;
-            JOptionPane.showMessageDialog(this, message);
+            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter valid numeric values.");
         }
@@ -846,9 +858,11 @@ public class DashBoard extends JFrame {
 
     private void calculateTax1() {
         try {
-            // Get the values from text fields
+            
             double monthlySalary = Double.parseDouble(basicsalary1.getText());
-            double bonus = (Double.parseDouble(monthly_bonus1.getText())* Double.parseDouble(months1.getText()))+Double.parseDouble(one_time_bonus1.getText());
+            double monthly_bonus  = (Double.parseDouble(monthly_bonus1.getText())* Double.parseDouble(months1.getText()));
+            
+            double bonus = monthly_bonus +Double.parseDouble(one_time_bonus1.getText());
             double annualSalary = monthlySalary * 12;
             double totalTaxableAmount = annualSalary + bonus;
             epfDeduction = 0;
@@ -896,7 +910,9 @@ public class DashBoard extends JFrame {
             double taxAmount = 0;
             double citLimit;
             if (isEPF==1) {
-            	epfDeduction = totalTaxableAmount * 0.1; // Deduct 10% for EPF
+            	companycontribution = annualSalary * 0.1;
+            	epfDeduction = annualSalary * 0.1;
+            	annualtaxable = totalTaxableAmount + companycontribution;// Deduct 10% for EPF
                 totalTaxableAmount -= epfDeduction;
                 citLimit = 300000-epfDeduction;
              
@@ -1009,9 +1025,18 @@ public class DashBoard extends JFrame {
                     taxAmount = (500000 * 0.01) + (200000 * 0.1) + (300000 * 0.2) + (1000000 * 0.3) + ((totalTaxableAmount - 2000000) * 0.36); // 1% up to 500k, 10% from 500k to 700k, 20% from 700k to 1M, 30% from 1M to 2M, 36% beyond 2M
                 } else if (totalTaxableAmount > 5000000) {
                     taxAmount = (500000 * 0.01) + (200000 * 0.1) + (300000 * 0.2) + (1000000 * 0.3) + (3000000 * 0.36) + ((totalTaxableAmount - 5000000) * 0.39); // 1% up to 500k, 10% from 500k to 700k, 20% from 700k to 1M, 30% from 1M to 2M, 36% from 2M to 5M, 39% beyond 5M
-                }}}
+                }}
+            double netIncome = totalTaxableAmount - taxAmount;
+            String message = "Annual Taxable Amount: " + annualtaxable + "\nDeduction: " + "\nCompany Contribution: " + companycontribution + "\nInsurance: " + insuranceAmount + "\nCIT: " + citAmount +  "\nEPF Deduction: " + epfDeduction+ "\nTotal Taxable Amount: " + totalTaxableAmount + "\nTax Amount: " + taxAmount + "\nNet Income (After Tax): " + netIncome ;
+            JOptionPane.showMessageDialog(this, message);
+            saveFinancialData(userId, monthlySalary, bonus, annualSalary, insuranceAmount, citAmount, taxAmount);
+            }
            else {
-        	   ssfDeduction = totalTaxableAmount * 0.31;
+  
+        	   companycontribution = annualSalary * 0.2;//
+        	   
+               annualtaxable = totalTaxableAmount + companycontribution;
+        	   ssfDeduction = annualSalary * 0.11;
         	   totalTaxableAmount -= ssfDeduction;
                citLimit = 500000-ssfDeduction;
                double citAmounttxt = Double.parseDouble(cit1.getText());
@@ -1109,13 +1134,13 @@ public class DashBoard extends JFrame {
                        taxAmount = (200000 * 0.1) + (300000 * 0.2) + (1000000 * 0.3) + (3000000 * 0.36) + ((totalTaxableAmount - 5000000) * 0.39); // 1% up to 500k, 10% from 500k to 700k, 20% from 700k to 1M, 30% from 1M to 2M, 36% from 2M to 5M, 39% beyond 5M
                    }}
                
-               
+               double netIncome = totalTaxableAmount - taxAmount;
+               String message = "Annual Taxable Amount: " + annualtaxable + "\nDeduction: " + "\nCompany Contribution: " + companycontribution + "\nInsurance: " + insuranceAmount + "\nCIT: " + citAmount +  "\nSSF Deduction: " + ssfDeduction+ "\nTotal Taxable Amount: " + totalTaxableAmount + "\nTax Amount: " + taxAmount + "\nNet Income (After Tax): " + netIncome ;
+               JOptionPane.showMessageDialog(this, message);
+               saveFinancialData(userId, monthlySalary, bonus, annualSalary, insuranceAmount, citAmount, taxAmount);
                
             }
-            double netIncome = totalTaxableAmount - taxAmount;
-            String message = "Total Taxable Amount: " + totalTaxableAmount + "\nTax Amount: " + taxAmount + "\nNet Income (After Tax): " + netIncome;
-            JOptionPane.showMessageDialog(this, message);
-            saveFinancialData(userId, monthlySalary, bonus, annualSalary, insuranceAmount, citAmount, taxAmount);
+         
             
         
         } catch (NumberFormatException e) {
