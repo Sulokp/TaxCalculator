@@ -225,6 +225,8 @@ public class DashBoard extends JFrame {
                 annualsalary.setText("");
                 cittxt.setText("");
                 insurancetxt.setText("");
+                months.setText("");
+                one_time_bonus.setText("");
 
                 // Reset checkboxes
                 marriedcheck.setSelected(false);
@@ -387,6 +389,8 @@ public class DashBoard extends JFrame {
                 annualsalary1.setText("");
                 cit1.setText("");
                 insurance1.setText("");
+                months1.setText("");
+                one_time_bonus1.setText("");
 
                 // Display a message indicating that values have been reset
                 JOptionPane.showMessageDialog(null, "Values have been reset.");
@@ -408,7 +412,11 @@ public class DashBoard extends JFrame {
         JButton btnNewButton_3_1 = new JButton("Calculate Tax");
         btnNewButton_3_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                calculateTax1();
+                if (isUserProfileSaved()) {
+                    calculateTax1();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please save your user profile before calculating tax.");
+                }
             }
         });
         btnNewButton_3_1.setBounds(169, 215, 96, 21);
@@ -876,9 +884,11 @@ public class DashBoard extends JFrame {
             Connection connection = connector.connect();
             if (connection != null) {
                 try {
-                    String query = "SELECT isMarried, isMale, isDisable, isEPF FROM userprofile WHERE userid = ?";
+                    // Retrieve the latest user profile information based on the latest date
+                    String query = "SELECT isMarried, isMale, isDisable, isEPF FROM userprofile WHERE userid = ? AND date = (SELECT MAX(date) FROM userprofile WHERE userid = ?)";
                     PreparedStatement statement = connection.prepareStatement(query);
                     statement.setInt(1, userId);  // Assuming userId is the ID of the user whose profile you want to fetch
+                    statement.setInt(2, userId);  // Bind the userId again for the subquery
 
                     ResultSet resultSet = statement.executeQuery();
                     if (resultSet.next()) {
@@ -886,11 +896,11 @@ public class DashBoard extends JFrame {
                         isMale = resultSet.getInt("isMale");
                         isDisable = resultSet.getInt("isDisable");
                         isEPF = resultSet.getInt("isEPF");
-                        
-                        
-                        
+
+                        // Now you have the latest user profile information
                     } else {
-                    	JOptionPane.showMessageDialog(this,"No user profile found for the specified user ID. Please save User Profile First." );
+                        // Handle the case where no profile is found for the user
+                        JOptionPane.showMessageDialog(this, "User profile not found.");
                     }
 
                     resultSet.close();
@@ -1183,18 +1193,28 @@ private void saveFinancialData(int userId, double monthlySalary, double bonus, d
         System.out.println("Failed to connect to the database.");
     }
 }   
-    private void saveOrUpdateUserProfile() {
-        int isEPFValue = fund.getSelectedIndex();
-        int isMaleValue = gender.getSelectedIndex();
-        int isMarriedValue = maritalstatus.getSelectedIndex();
-        int isDisableValue = disability.getSelectedIndex();
+private void saveOrUpdateUserProfile() {
+    int isEPFValue = fund.getSelectedIndex();
+    int isMaleValue = gender.getSelectedIndex();
+    int isMarriedValue = maritalstatus.getSelectedIndex();
+    int isDisableValue = disability.getSelectedIndex();
 
-        Connect connector = new Connect();
-        Connection connection = connector.connect();
-        if (connection != null) {
-            try {
-                String query = "INSERT INTO userprofile (userid, isEPF, isMale, isMarried, isDisable, date) VALUES (?, ?, ?, ?, ?, CURRENT_DATE)";
-                PreparedStatement statement = connection.prepareStatement(query);
+    Connect connector = new Connect();
+    Connection connection = connector.connect();
+    if (connection != null) {
+        try {
+            // Check if the user profile exists for the current date
+            String checkQuery = "SELECT COUNT(*) AS count FROM userprofile WHERE userid = ? AND date = CURRENT_DATE";
+            PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
+            checkStatement.setInt(1, userId);
+            ResultSet resultSet = checkStatement.executeQuery();
+            resultSet.next();
+            int count = resultSet.getInt("count");
+
+            if (count == 0) {
+                // No user profile exists for the current date, proceed with insertion
+                String insertQuery = "INSERT INTO userprofile (userid, isEPF, isMale, isMarried, isDisable, date) VALUES (?, ?, ?, ?, ?, CURRENT_DATE)";
+                PreparedStatement statement = connection.prepareStatement(insertQuery);
                 statement.setInt(1, userId);
                 statement.setInt(2, isEPFValue);
                 statement.setInt(3, isMaleValue);
@@ -1202,17 +1222,21 @@ private void saveFinancialData(int userId, double monthlySalary, double bonus, d
                 statement.setInt(5, isDisableValue);
                 statement.executeUpdate();
                 JOptionPane.showMessageDialog(this, "User profile saved successfully.");
+            } else {
+                JOptionPane.showMessageDialog(this, "User profile already exists for today. You can update it tomorrow.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
-            } finally {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
             }
         }
     }
+}
+
     private static String convertToBS(java.sql.Date adDate) {
         // Check if the input date is null
         if (adDate == null) {
@@ -1286,5 +1310,14 @@ private void saveFinancialData(int userId, double monthlySalary, double bonus, d
         } else {
             JOptionPane.showMessageDialog(this, "Failed to connect to the database.");
         }
+        
+    }
+    private boolean isUserProfileSaved() {
+        String selectedFund = (String) fund.getSelectedItem();
+        String selectedGender = (String) gender.getSelectedItem();
+        String selectedMaritalStatus = (String) maritalstatus.getSelectedItem();
+        String selectedDisability = (String) disability.getSelectedItem();
+
+        return !(selectedFund.equals("") || selectedGender.equals("") || selectedMaritalStatus.equals("") || selectedDisability.equals(""));
     }
 }
