@@ -30,6 +30,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.awt.Color;
 
 
 public class DashBoard extends JFrame {
@@ -97,14 +98,14 @@ public class DashBoard extends JFrame {
     public DashBoard(int userId) {
         this.userId = userId;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 511, 359);
+        setBounds(100, 100, 778, 458);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.setBounds(5, 5, 468, 276);
+        tabbedPane.setBounds(5, 5, 504, 276);
         contentPane.add(tabbedPane);
 
         JPanel newsPanel = new JPanel();
@@ -136,15 +137,18 @@ public class DashBoard extends JFrame {
         taxCalculatorPanel.setLayout(null);
 
         marriedcheck = new JCheckBox("Married");
-        marriedcheck.setBounds(18, 6, 93, 21);
+        marriedcheck.setForeground(new Color(0, 128, 255));
+        marriedcheck.setBounds(13, 6, 93, 21);
         taxCalculatorPanel.add(marriedcheck);
 
         chckbxDisable = new JCheckBox("Disable");
-        chckbxDisable.setBounds(126, 6, 93, 21);
+        chckbxDisable.setForeground(new Color(0, 128, 255));
+        chckbxDisable.setBounds(125, 6, 93, 21);
         taxCalculatorPanel.add(chckbxDisable);
 
         chckbxFemale = new JCheckBox("Female");
-        chckbxFemale.setBounds(216, 6, 93, 21);
+        chckbxFemale.setForeground(new Color(0, 128, 255));
+        chckbxFemale.setBounds(221, 6, 93, 21);
         taxCalculatorPanel.add(chckbxFemale);
 
         Basicsalary = new JTextField();
@@ -177,7 +181,8 @@ public class DashBoard extends JFrame {
         taxCalculatorPanel.add(lblNewLabel_1);
 
         chckbxEpf = new JCheckBox("EPF");
-        chckbxEpf.setBounds(311, 6, 93, 21);
+        chckbxEpf.setForeground(new Color(0, 128, 255));
+        chckbxEpf.setBounds(332, 6, 93, 21);
         taxCalculatorPanel.add(chckbxEpf);
 
         montly_bonus = new JTextField();
@@ -217,6 +222,7 @@ public class DashBoard extends JFrame {
         taxCalculatorPanel.add(lblNewLabel_6);
 
         JButton btnNewButton_2_1_1 = new JButton("Reset Values");
+        btnNewButton_2_1_1.setForeground(new Color(0, 0, 128));
         btnNewButton_2_1_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Reset text fields
@@ -239,10 +245,12 @@ public class DashBoard extends JFrame {
             }
         });
 
-        btnNewButton_2_1_1.setBounds(289, 181, 102, 21);
+        btnNewButton_2_1_1.setBounds(269, 174, 102, 21);
         taxCalculatorPanel.add(btnNewButton_2_1_1);
 
         JButton btnNewButton_3 = new JButton("Calculate Tax");
+        btnNewButton_3.setForeground(new Color(255, 0, 0));
+        btnNewButton_3.setBackground(new Color(255, 255, 255));
         btnNewButton_3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 calculateTax();
@@ -267,7 +275,7 @@ public class DashBoard extends JFrame {
         
         JLabel lblNewLabel_2_3 = new JLabel("Months");
         lblNewLabel_2_3.setBounds(10, 117, 74, 13);
-        taxCalculatorPanel.add(lblNewLabel_2_3);}
+        taxCalculatorPanel.add(lblNewLabel_2_3);} 
         else {
 
         JPanel taxCalculatorPanel1 = new JPanel();
@@ -336,6 +344,7 @@ public class DashBoard extends JFrame {
         taxCalculatorPanel1.add(insurance1);
 
         JButton btnNewButton_2 = new JButton("History");
+        btnNewButton_2.setForeground(new Color(0, 0, 128));
         btnNewButton_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Query to fetch tax amount and date from user_data table
@@ -381,6 +390,7 @@ public class DashBoard extends JFrame {
         taxCalculatorPanel1.add(btnNewButton_2);
 
         JButton btnNewButton_2_1 = new JButton("Reset Values");
+        btnNewButton_2_1.setForeground(new Color(0, 0, 128));
         btnNewButton_2_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Reset text fields
@@ -401,6 +411,7 @@ public class DashBoard extends JFrame {
         taxCalculatorPanel1.add(btnNewButton_2_1);
 
         JButton Refill = new JButton("Refill Values");
+        Refill.setForeground(new Color(0, 0, 128));
         Refill.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 refillValues();
@@ -410,6 +421,7 @@ public class DashBoard extends JFrame {
         taxCalculatorPanel1.add(Refill);
 
         JButton btnNewButton_3_1 = new JButton("Calculate Tax");
+        btnNewButton_3_1.setForeground(new Color(255, 0, 0));
         btnNewButton_3_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (isUserProfileSaved()) {
@@ -481,6 +493,7 @@ public class DashBoard extends JFrame {
         profilePanel.add(lblDisability);
 
         JButton btnSave = new JButton("Save");
+        btnSave.setForeground(new Color(0, 0, 128));
         btnSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Validate if proper values are selected
@@ -498,12 +511,13 @@ public class DashBoard extends JFrame {
             }
         });
         btnSave.setBounds(146, 183, 85, 21);
-        profilePanel.add(btnSave);}
+        profilePanel.add(btnSave);//}
         JPanel helpPanel = new JPanel();
         tabbedPane.addTab("Help", null, helpPanel, null);
         helpPanel.setLayout(null);
 
         JLabel helpLabel = new JLabel("Help Information for Tax Calculator:");
+        helpLabel.setForeground(new Color(0, 0, 255));
         helpLabel.setBounds(10, 10, 300, 20);
         helpPanel.add(helpLabel);
 
@@ -515,11 +529,12 @@ public class DashBoard extends JFrame {
                 "CIT: Enter the CIT (Corporate Income Tax) amount.\n" +
                 "Insurance: Enter the insurance amount deducted from salary.\n" );
                 
-        helpText.setBounds(10, 40, 450, 200);
+        helpText.setBounds(10, 40, 479, 200);
         helpText.setEditable(false);
         helpPanel.add(helpText);
 
         JButton btnNewButton = new JButton("Login");
+        btnNewButton.setForeground(new Color(0, 0, 128));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Login.NewScreen();
@@ -529,6 +544,7 @@ public class DashBoard extends JFrame {
         contentPane.add(btnNewButton);
 
         JButton btnNewButton_1 = new JButton("SignIn");
+        btnNewButton_1.setForeground(new Color(0, 0, 128));
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Signin.NewScreen();
