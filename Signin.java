@@ -56,31 +56,31 @@ public class Signin extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 315, 461);
         contentPane = new JPanel();
-        contentPane.setBackground(new Color(205, 177, 204));
+        contentPane.setBackground(new Color(192, 192, 192));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         Name = new JTextField();
-        Name.setBackground(new Color(128, 255, 255));
+        Name.setBackground(new Color(255, 255, 255));
         Name.setBounds(62, 86, 96, 19);
         contentPane.add(Name);
         Name.setColumns(10);
 
         Email = new JTextField();
-        Email.setBackground(new Color(128, 255, 255));
+        Email.setBackground(new Color(255, 255, 255));
         Email.setBounds(62, 132, 96, 19);
         contentPane.add(Email);
         Email.setColumns(10);
 
         password = new JPasswordField();
-        password.setBackground(new Color(128, 255, 255));
+        password.setBackground(new Color(255, 255, 255));
         password.setBounds(62, 176, 96, 19);
         contentPane.add(password);
 
         confirmpass = new JPasswordField();
-        confirmpass.setBackground(new Color(128, 255, 255));
+        confirmpass.setBackground(new Color(255, 255, 255));
         confirmpass.setBounds(62, 219, 96, 19);
         contentPane.add(confirmpass);
 
@@ -101,12 +101,13 @@ public class Signin extends JFrame {
         contentPane.add(lblConfirmPassword);
 
         lblNewLabel_2 = new JLabel("Tax Calculator");
+        lblNewLabel_2.setForeground(new Color(255, 0, 0));
         lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
         lblNewLabel_2.setBounds(95, 25, 121, 25);
         contentPane.add(lblNewLabel_2);
 
         lblNewLabel_3 = new JLabel("If you already have an account  please ");
-        lblNewLabel_3.setBounds(49, 312, 179, 13);
+        lblNewLabel_3.setBounds(62, 301, 179, 13);
         contentPane.add(lblNewLabel_3);
 
         JButton btnNewButton = new JButton("Confirm");
@@ -120,13 +121,14 @@ public class Signin extends JFrame {
         contentPane.add(btnNewButton);
 
         JButton btnNewButton_1 = new JButton("Login");
+        btnNewButton_1.setForeground(new Color(0, 0, 128));
         btnNewButton_1.setBackground(new Color(192, 192, 192));
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Login.NewScreen();
             }
         });
-        btnNewButton_1.setBounds(86, 335, 85, 21);
+        btnNewButton_1.setBounds(62, 335, 85, 21);
         contentPane.add(btnNewButton_1);
     }
 
