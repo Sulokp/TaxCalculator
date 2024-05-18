@@ -40,26 +40,27 @@ public class Login extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 299, 446);
         contentPane = new JPanel();
-        contentPane.setBackground(new Color(205, 177, 204));
+        contentPane.setBackground(new Color(192, 192, 192));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JLabel lblNewLabel = new JLabel("Tax Calculator");
+        lblNewLabel.setForeground(new Color(255, 0, 0));
         lblNewLabel.setBounds(77, 24, 128, 37);
         lblNewLabel.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
         contentPane.add(lblNewLabel);
 
         textField = new JTextField();
         textField.setBounds(57, 89, 96, 19);
-        textField.setBackground(new Color(128, 255, 255));
+        textField.setBackground(new Color(255, 255, 255));
         contentPane.add(textField);
         textField.setColumns(10);
 
         passwordField = new JPasswordField();
         passwordField.setBounds(58, 143, 95, 19);
-        passwordField.setBackground(new Color(128, 255, 255));
+        passwordField.setBackground(new Color(255, 255, 255));
         contentPane.add(passwordField);
 
         JLabel lblNewLabel_1 = new JLabel("Email");
@@ -93,11 +94,12 @@ public class Login extends JFrame {
         contentPane.add(btnNewButton);
 
         JLabel lblNewLabel_3 = new JLabel("If you don't have an account, please");
-        lblNewLabel_3.setBounds(20, 233, 233, 13);
+        lblNewLabel_3.setBounds(52, 215, 233, 13);
         contentPane.add(lblNewLabel_3);
 
         JButton btnNewButton_1 = new JButton("SignUp");
-        btnNewButton_1.setBounds(74, 257, 85, 21);
+        btnNewButton_1.setForeground(new Color(0, 0, 128));
+        btnNewButton_1.setBounds(57, 250, 85, 21);
         btnNewButton_1.setBackground(new Color(192, 192, 192));
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
