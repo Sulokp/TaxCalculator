@@ -105,7 +105,7 @@ public class DashBoard extends JFrame {
         contentPane.setLayout(null);
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.setBounds(5, 5, 504, 276);
+        tabbedPane.setBounds(5, 5, 573, 321);
         contentPane.add(tabbedPane);
 
         JPanel newsPanel = new JPanel();
@@ -187,11 +187,11 @@ public class DashBoard extends JFrame {
 
         montly_bonus = new JTextField();
         montly_bonus.setColumns(10);
-        montly_bonus.setBounds(269, 60, 96, 19);
+        montly_bonus.setBounds(314, 60, 96, 19);
         taxCalculatorPanel.add(montly_bonus);
 
         JLabel lblNewLabel_2 = new JLabel("Monthly Bonus");
-        lblNewLabel_2.setBounds(269, 45, 74, 13);
+        lblNewLabel_2.setBounds(314, 45, 74, 13);
         taxCalculatorPanel.add(lblNewLabel_2);
 
         annualsalary = new JTextField();
@@ -213,12 +213,12 @@ public class DashBoard extends JFrame {
         taxCalculatorPanel.add(lblNewLabel_5);
 
         insurancetxt = new JTextField();
-        insurancetxt.setBounds(269, 130, 96, 19);
+        insurancetxt.setBounds(314, 132, 96, 19);
         taxCalculatorPanel.add(insurancetxt);
         insurancetxt.setColumns(10);
 
         JLabel lblNewLabel_6 = new JLabel("Insurance");
-        lblNewLabel_6.setBounds(269, 117, 45, 13);
+        lblNewLabel_6.setBounds(314, 117, 45, 13);
         taxCalculatorPanel.add(lblNewLabel_6);
 
         JButton btnNewButton_2_1_1 = new JButton("Reset Values");
@@ -245,7 +245,7 @@ public class DashBoard extends JFrame {
             }
         });
 
-        btnNewButton_2_1_1.setBounds(269, 174, 102, 21);
+        btnNewButton_2_1_1.setBounds(308, 174, 102, 21);
         taxCalculatorPanel.add(btnNewButton_2_1_1);
 
         JButton btnNewButton_3 = new JButton("Calculate Tax");
@@ -256,16 +256,16 @@ public class DashBoard extends JFrame {
                 calculateTax();
             }
         });
-        btnNewButton_3.setBounds(153, 218, 96, 21);
+        btnNewButton_3.setBounds(175, 232, 96, 21);
         taxCalculatorPanel.add(btnNewButton_3);
         
         one_time_bonus = new JTextField();
         one_time_bonus.setColumns(10);
-        one_time_bonus.setBounds(269, 96, 96, 19);
+        one_time_bonus.setBounds(314, 96, 96, 19);
         taxCalculatorPanel.add(one_time_bonus);
         
         JLabel lblNewLabel_2_2 = new JLabel("One-time Bonus");
-        lblNewLabel_2_2.setBounds(269, 83, 96, 13);
+        lblNewLabel_2_2.setBounds(314, 83, 96, 13);
         taxCalculatorPanel.add(lblNewLabel_2_2);
         
         months = new JTextField();
@@ -313,7 +313,7 @@ public class DashBoard extends JFrame {
 
         monthly_bonus1 = new JTextField();
         monthly_bonus1.setColumns(10);
-        monthly_bonus1.setBounds(270, 42, 96, 19);
+        monthly_bonus1.setBounds(369, 42, 96, 19);
         taxCalculatorPanel1.add(monthly_bonus1);
 
         JLabel lblNewLabel_3_1 = new JLabel("Annual Salary");
@@ -335,12 +335,12 @@ public class DashBoard extends JFrame {
         taxCalculatorPanel1.add(cit1);
 
         JLabel lblNewLabel_6_1 = new JLabel("Insurance");
-        lblNewLabel_6_1.setBounds(269, 114, 45, 13);
+        lblNewLabel_6_1.setBounds(369, 114, 45, 13);
         taxCalculatorPanel1.add(lblNewLabel_6_1);
 
         insurance1 = new JTextField();
         insurance1.setColumns(10);
-        insurance1.setBounds(270, 126, 96, 19);
+        insurance1.setBounds(369, 125, 96, 19);
         taxCalculatorPanel1.add(insurance1);
 
         JButton btnNewButton_2 = new JButton("History");
@@ -386,7 +386,7 @@ public class DashBoard extends JFrame {
         });
 
 
-        btnNewButton_2.setBounds(10, 215, 85, 21);
+        btnNewButton_2.setBounds(21, 215, 85, 21);
         taxCalculatorPanel1.add(btnNewButton_2);
 
         JButton btnNewButton_2_1 = new JButton("Reset Values");
@@ -407,7 +407,7 @@ public class DashBoard extends JFrame {
             }
         });
 
-        btnNewButton_2_1.setBounds(264, 150, 102, 21);
+        btnNewButton_2_1.setBounds(363, 163, 102, 21);
         taxCalculatorPanel1.add(btnNewButton_2_1);
 
         JButton Refill = new JButton("Refill Values");
@@ -417,7 +417,7 @@ public class DashBoard extends JFrame {
                 refillValues();
             }
         });
-        Refill.setBounds(346, 215, 96, 21);
+        Refill.setBounds(369, 215, 96, 21);
         taxCalculatorPanel1.add(Refill);
 
         JButton btnNewButton_3_1 = new JButton("Calculate Tax");
@@ -431,20 +431,20 @@ public class DashBoard extends JFrame {
                 }
             }
         });
-        btnNewButton_3_1.setBounds(169, 215, 96, 21);
+        btnNewButton_3_1.setBounds(186, 240, 96, 21);
         taxCalculatorPanel1.add(btnNewButton_3_1);
         
         JLabel lblNewLabel_2_1 = new JLabel("Monthly Bonus");
-        lblNewLabel_2_1.setBounds(271, 25, 74, 13);
+        lblNewLabel_2_1.setBounds(368, 25, 74, 13);
         taxCalculatorPanel1.add(lblNewLabel_2_1);
         
         JLabel lblNewLabel_2_2_1 = new JLabel("One-time Bonus");
-        lblNewLabel_2_2_1.setBounds(270, 71, 96, 13);
+        lblNewLabel_2_2_1.setBounds(369, 71, 96, 13);
         taxCalculatorPanel1.add(lblNewLabel_2_2_1);
         
         one_time_bonus1 = new JTextField();
         one_time_bonus1.setColumns(10);
-        one_time_bonus1.setBounds(270, 85, 96, 19);
+        one_time_bonus1.setBounds(369, 85, 96, 19);
         taxCalculatorPanel1.add(one_time_bonus1);
         
         JLabel lblNewLabel_2_3_1 = new JLabel("Months");
@@ -529,7 +529,7 @@ public class DashBoard extends JFrame {
                 "CIT: Enter the CIT (Corporate Income Tax) amount.\n" +
                 "Insurance: Enter the insurance amount deducted from salary.\n" );
                 
-        helpText.setBounds(10, 40, 479, 200);
+        helpText.setBounds(10, 40, 548, 200);
         helpText.setEditable(false);
         helpPanel.add(helpText);
 
@@ -540,7 +540,7 @@ public class DashBoard extends JFrame {
                 Login.NewScreen();
             }
         });
-        btnNewButton.setBounds(5, 291, 85, 21);
+        btnNewButton.setBounds(10, 336, 85, 21);
         contentPane.add(btnNewButton);
 
         JButton btnNewButton_1 = new JButton("SignIn");
@@ -550,7 +550,7 @@ public class DashBoard extends JFrame {
                 Signin.NewScreen();
             }
         });
-        btnNewButton_1.setBounds(388, 291, 85, 21);
+        btnNewButton_1.setBounds(403, 354, 85, 21);
         contentPane.add(btnNewButton_1);
     }
 
