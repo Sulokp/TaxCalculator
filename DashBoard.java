@@ -511,7 +511,7 @@ public class DashBoard extends JFrame {
             }
         });
         btnSave.setBounds(146, 183, 85, 21);
-        profilePanel.add(btnSave);//}
+        profilePanel.add(btnSave);}
         JPanel helpPanel = new JPanel();
         tabbedPane.addTab("Help", null, helpPanel, null);
         helpPanel.setLayout(null);
