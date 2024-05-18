@@ -28,7 +28,7 @@ public class AdminPanel extends JFrame {
 
     public AdminPanel() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 781, 458);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -36,9 +36,13 @@ public class AdminPanel extends JFrame {
 
         // Panel for buttons
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setBackground(new Color(255, 255, 255));
+        buttonPanel.setForeground(new Color(0, 0, 0));
         contentPane.add(buttonPanel, BorderLayout.NORTH);
 
         JButton btnAddNews = new JButton("Add News");
+        btnAddNews.setForeground(new Color(0, 128, 255));
+        btnAddNews.setBackground(new Color(255, 255, 255));
         btnAddNews.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String title = JOptionPane.showInputDialog(AdminPanel.this, "Enter news title:");
@@ -52,6 +56,7 @@ public class AdminPanel extends JFrame {
         buttonPanel.add(btnAddNews);
 
         JButton btnEditNews = new JButton("Edit Selected News");
+        btnEditNews.setForeground(new Color(0, 128, 255));
         btnEditNews.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (selectedTitle != null) {
@@ -69,6 +74,7 @@ public class AdminPanel extends JFrame {
         buttonPanel.add(btnEditNews);
 
         JButton btnDeleteNews = new JButton("Delete Selected News");
+        btnDeleteNews.setForeground(new Color(0, 128, 255));
         btnDeleteNews.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (selectedTitle != null) {
@@ -84,6 +90,8 @@ public class AdminPanel extends JFrame {
 
         // Panel for news display
         newsPanel = new JPanel(new GridLayout(0, 1)); // GridLayout with one column
+        newsPanel.setBackground(new Color(255, 255, 255));
+        newsPanel.setForeground(new Color(0, 0, 0));
         scrollPane = new JScrollPane(newsPanel);
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
@@ -214,4 +222,3 @@ public class AdminPanel extends JFrame {
         newsPanel.repaint();
     }
 }
-
